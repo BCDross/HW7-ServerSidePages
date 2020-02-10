@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+<main>
+  <div class="jumbotron">
+      <h2>Add some books.</h2>
+      <label for="movie">Add New Book</label>
+      <input class="form-control" type="text" id="book" name="book"><br>
+      <label for="author">Author</label>
+      <input class="form-control" type="text" id="author" name="author"><br>
+      <label for="date">Year Released</label>
+      <input class="form-control" type="text" id="date" name="date"><br>
+      <button class="btn btn-primary  " onclick="updateURL();">Add another book</button>
+
+  </div>
+</main>
+
+<footer>
+  <% include ../partials/footer %>
+</footer>
+<script type="text/javascript">
+// our menu calls this page URL with no ?id= value,
+// so code needs to check for that
+// when user enters data, I append the data using the required ?id=
+
+  function updateURL() {
+    // http://localhost:3000/uploadData?id=Terminator&date=1946
+    var myURL = (document.location).toString();
+    var n = myURL.indexOf("?");
+    myURL = myURL.substr(0, n); 
+    document.location = myURL + "?id=" + document.getElementById("book").value + "&author=" +  document.getElementById("author").value + "&date=" + document.getElementById("date").value;
+   // document.location = "http://localhost:3000/about"
+
+  }
+</script>
+
+</body>
+</html>
