@@ -13,11 +13,11 @@
   <div class="jumbotron">
       <h2>Here are your books</h2>
 
-      <%if (dataArray != null) { %>
+      <%if (sciFiArray != null) { %>
        
         <ul class="list-group">
-            <% dataArray.forEach(function(dat) {%>
-              <li class="list-group-item"><%= "Title:  " + dat.id + "Author: " + dat.author + "Date: " + dat.date %></li>
+            <% sciFiArray.forEach(function(dat) {%>
+              <li class="list-group-item"><%= "Title:  " + dat.id + " || Author: " + dat.author + " || Genre: " + dat.genre + " || Date: " + dat.date %></li>
             <% }) %>
           </ul>
 
