@@ -7,7 +7,7 @@ a {
   color: #00B7FF;
 }
 
-#indexFrame {
+.jumbotron {
   background-color: darkolivegreen !important;
   color: seagreen;
 }
