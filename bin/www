@@ -2,7 +2,7 @@
 var debug = require('debug')('ejsApp');
 var app = require('../app');
 
-if (app.get('env') === 'developement'){
+if (app.get('env') === 'development'){
   app.set('port', process.env.PORT || 3000);
 }
 else {

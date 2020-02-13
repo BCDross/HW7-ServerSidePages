@@ -68,17 +68,29 @@ app.get("/allBooks", function(req, res) {
 });
 
 app.get("/sortedByDateBooks", function(req, res) {
-  dataArray = app.dataArray.sort(app.dataArray.date);
+  let tempArray = JSON.parse(JSON.stringify(app.dataArray));
+  tempArray.sort(dynamicSort("date"));
   res.render("pages/sortedByDateBooks", {
-    dataArray: app.dataArray
+    dataArray: tempArray
   });
 });
 
+function dynamicSort(property){
+  let sortOrder = 1;
+  if(property[0] === "-"){
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+  return function (a,b){
+    let result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+    return result * sortOrder;
+  }
+}
+
 app.get("/fantasyBooks", function(req, res) {
-  for (let i = 0; i < app.dataArray.length; i++) {
-    if (app.dataArray[i].genre == "Fantasy") {
-      fantasyArray.push(app.dataArray[i]);
-    }
+  app.fantasyArray = app.dataArray.filter(function(genre){
+    return 
+  })
   }
   res.render("pages/fantasyBooks", {
     fantasyArray: app.fantasyArray
@@ -86,9 +98,10 @@ app.get("/fantasyBooks", function(req, res) {
 });
 
 app.get("/sciFiBooks", function(req, res) {
-  for (let i = 0; i < app.dataArray.length; i++) {
-    if (app.dataArray[i].genre == "SciFi") {
-      app.sciFiArray.push(app.dataArray[i]);
+  let tempArray = JSON.parse(JSON.stringify(app.dataArray));
+  for (let i = 0; i < tempArray.length; i++) {
+    if (tempArray[i].genre == "SciFi") {
+      app.sciFiArray.push(tempArray[i]);
     }
   }
   res.render("pages/sciFiBooks", {
@@ -133,12 +146,12 @@ app.get("/error", function(req, res) {
   });
 });
 
-if (app.get("env") === "development") {
-  app.listen(3000);
-  console.log("3000 is the magic port");
-} else {
-  app.listen(443); // not setting port number in www.bin, simple to do here
-  console.log("443 is the magic port");
-}
+// if (app.get("env") === "development") {
+//   app.listen(3000);
+//   console.log("3000 is the magic port");
+// } else {
+//   app.listen(443);
+//   console.log("443 is the magic port");
+// }
 
 module.exports = app;
