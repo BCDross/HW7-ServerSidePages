@@ -88,26 +88,42 @@ function dynamicSort(property){
 }
 
 app.get("/fantasyBooks", function(req, res) {
-  app.fantasyArray = app.dataArray.filter(function(genre){
-    return 
-  })
-  }
+  app.fantasyArray = JSON.parse(JSON.stringify(app.dataArray));
+  app.fantasyArray = filterFantasy(app.fantasyArray);
   res.render("pages/fantasyBooks", {
     fantasyArray: app.fantasyArray
   });
 });
 
-app.get("/sciFiBooks", function(req, res) {
-  let tempArray = JSON.parse(JSON.stringify(app.dataArray));
-  for (let i = 0; i < tempArray.length; i++) {
-    if (tempArray[i].genre == "SciFi") {
-      app.sciFiArray.push(tempArray[i]);
+function filterFantasy(array) {
+  let filteredArray = [];
+  filteredArray = array;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].genre == "fantasy") {
+      filteredArray.push(array[i]);
     }
   }
+  return filteredArray;
+};
+
+app.get("/sciFiBooks", function(req, res) {
+  app.sciFiArray = JSON.parse(JSON.stringify(app.dataArray));
+  app.sciFiArray = filterSciFi(app.sciFiArray);
   res.render("pages/sciFiBooks", {
     sciFiArray: app.sciFiArray
   });
 });
+
+function filterSciFi(array) {
+  let filteredArray = [];
+  filteredArray = array;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].genre == "scifi") {
+      filteredArray.push(array[i]);
+    }
+  }
+  return filteredArray;
+};
 
 // upLoadData page
 // sending a get with 1 param
