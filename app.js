@@ -46,8 +46,6 @@ app.dataArray = [
 ];
 
 // just one "site" with 2 pages, / and about
-let fantasyArray = [];
-let sciFiArray = [];
 
 // use res.render to load up an ejs view file
 // index page
@@ -88,18 +86,17 @@ function dynamicSort(property){
 }
 
 app.get("/fantasyBooks", function(req, res) {
-  app.fantasyArray = JSON.parse(JSON.stringify(app.dataArray));
-  app.fantasyArray = filterFantasy(app.fantasyArray);
+  let fantasyArray = JSON.parse(JSON.stringify(app.dataArray));
+  fantasyArray = filterFantasy(fantasyArray);
   res.render("pages/fantasyBooks", {
-    fantasyArray: app.fantasyArray
+    fantasyArray: fantasyArray
   });
 });
 
 function filterFantasy(array) {
   let filteredArray = [];
-  filteredArray = array;
   for (let i = 0; i < array.length; i++) {
-    if (array[i].genre == "fantasy") {
+    if (array[i].genre == "Fantasy") {
       filteredArray.push(array[i]);
     }
   }
@@ -107,18 +104,17 @@ function filterFantasy(array) {
 };
 
 app.get("/sciFiBooks", function(req, res) {
-  app.sciFiArray = JSON.parse(JSON.stringify(app.dataArray));
-  app.sciFiArray = filterSciFi(app.sciFiArray);
+  let sciFiArray = JSON.parse(JSON.stringify(app.dataArray));
+  sciFiArray = filterSciFi(sciFiArray);
   res.render("pages/sciFiBooks", {
-    sciFiArray: app.sciFiArray
+    sciFiArray: sciFiArray
   });
 });
 
 function filterSciFi(array) {
   let filteredArray = [];
-  filteredArray = array;
   for (let i = 0; i < array.length; i++) {
-    if (array[i].genre == "scifi") {
+    if (array[i].genre == "SciFi") {
       filteredArray.push(array[i]);
     }
   }
