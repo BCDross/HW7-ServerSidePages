@@ -23,13 +23,13 @@ app.dataArray = [
     id: "Words of Radiance",
     author: "Brandon Sanderson",
     genre: "Fantasy",
-    date: "2011"
+    date: "2014"
   },
   {
     id: "Oathbringer",
     author: "Brandon Sanderson",
     genre: "Fantasy",
-    date: "2011"
+    date: "2015"
   },
   {
     id: "Timegods World",
@@ -42,6 +42,36 @@ app.dataArray = [
     author: "LE Modesitt Jr.",
     genre: "SciFi",
     date: "1990"
+  },
+  {
+    id: "The Black Company",
+    author: "Glen Cook",
+    genre: "fantasy",
+    date: "1984"
+  },
+  {
+    id: "Angels & Demons",
+    author: "Dan Brown",
+    genre: "Fiction",
+    date: "2000"
+  },
+  {
+    id: "The Da Vinci Code",
+    author: "Dan Brown",
+    genre: "Fiction",
+    date: "2002"
+  },
+  {
+    id: "The Lost Symbol",
+    author: "Dan Brown",
+    genre: "Fiction",
+    date: "2009"
+  },
+  {
+    id: "Inferno",
+    author: "Dan Brown",
+    genre: "Fiction",
+    date: "2012"
   }
 ];
 
@@ -96,7 +126,7 @@ app.get("/fantasyBooks", function(req, res) {
 function filterFantasy(array) {
   let filteredArray = [];
   for (let i = 0; i < array.length; i++) {
-    if (array[i].genre == "Fantasy") {
+    if (array[i].genre === "Fantasy") {
       filteredArray.push(array[i]);
     }
   }
@@ -114,7 +144,7 @@ app.get("/sciFiBooks", function(req, res) {
 function filterSciFi(array) {
   let filteredArray = [];
   for (let i = 0; i < array.length; i++) {
-    if (array[i].genre == "SciFi") {
+    if (array[i].genre === "SciFi") {
       filteredArray.push(array[i]);
     }
   }
