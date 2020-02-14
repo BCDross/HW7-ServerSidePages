@@ -46,7 +46,7 @@ app.dataArray = [
   {
     id: "The Black Company",
     author: "Glen Cook",
-    genre: "fantasy",
+    genre: "Fantasy",
     date: "1984"
   },
   {
